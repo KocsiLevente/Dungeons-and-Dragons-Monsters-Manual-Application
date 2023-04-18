@@ -3,18 +3,19 @@ package com.example.dungeonsanddragonsmonstersmanualapplication.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.dungeonsanddragonsmonstersmanualapplication.R
-import com.example.dungeonsanddragonsmonstersmanualapplication.fragments.MainFragment
+import com.example.dungeonsanddragonsmonstersmanualapplication.fragments.MonsterListFragment
 
-class MainActivity : AppCompatActivity() {
+class MonsterListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
+        setContentView(R.layout.monster_list_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
+                .replace(R.id.container, MonsterListFragment.newInstance())
                 .commitNow()
         }
     }
 
+    //TODO implement handling UI and other functionality
 }
