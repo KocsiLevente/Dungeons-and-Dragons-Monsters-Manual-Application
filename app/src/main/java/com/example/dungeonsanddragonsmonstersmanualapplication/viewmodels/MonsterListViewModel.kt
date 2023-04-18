@@ -1,4 +1,4 @@
-package com.example.dungeonsanddragonsmonstersmanualapplication.ui.main
+package com.example.dungeonsanddragonsmonstersmanualapplication.viewmodels
 
 import androidx.lifecycle.ViewModel
 

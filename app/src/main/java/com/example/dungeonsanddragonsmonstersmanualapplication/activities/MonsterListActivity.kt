@@ -1,8 +1,9 @@
-package com.example.dungeonsanddragonsmonstersmanualapplication
+package com.example.dungeonsanddragonsmonstersmanualapplication.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.dungeonsanddragonsmonstersmanualapplication.ui.main.MainFragment
+import com.example.dungeonsanddragonsmonstersmanualapplication.R
+import com.example.dungeonsanddragonsmonstersmanualapplication.fragments.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
