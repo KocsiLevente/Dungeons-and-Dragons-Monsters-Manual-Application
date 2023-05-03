@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.dungeonsanddragonsmonstersmanualapplication.R
 import com.example.dungeonsanddragonsmonstersmanualapplication.utils.InjectorUtils
+import com.example.dungeonsanddragonsmonstersmanualapplication.utils.TesterUtils
 import com.example.dungeonsanddragonsmonstersmanualapplication.viewmodels.MonsterListViewModel
 
 class MonsterListFragment : Fragment() {
@@ -29,6 +30,8 @@ class MonsterListFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = InjectorUtils.provideMonsterListViewModelFactory().create(MonsterListViewModel::class.java)
         // TODO: Use the ViewModel
+        // TODO: Remove TesterUtils
+        TesterUtils.createGetMonstersCall()
+        TesterUtils.createGetMonsterDetailsCall("bandit")
     }
-
 }
