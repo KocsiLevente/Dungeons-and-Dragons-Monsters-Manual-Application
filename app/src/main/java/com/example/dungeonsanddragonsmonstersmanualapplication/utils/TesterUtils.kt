@@ -1,27 +1,17 @@
-package com.example.dungeonsanddragonsmonstersmanualapplication.data
+package com.example.dungeonsanddragonsmonstersmanualapplication.utils
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import com.example.dungeonsanddragonsmonstersmanualapplication.models.Monster
 import com.example.dungeonsanddragonsmonstersmanualapplication.models.MonsterDetailsResult
 import com.example.dungeonsanddragonsmonstersmanualapplication.models.MonsterElement
 import com.example.dungeonsanddragonsmonstersmanualapplication.models.MonstersResult
-import com.example.dungeonsanddragonsmonstersmanualapplication.utils.InjectorUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MonsterRepository private constructor(private val monsterDao: MonsterDao) {
-
-    fun addMonster(monster: MonsterElement) {
-        monsterDao.addMonster(monster)
-    }
-
-    fun getMonster(index: String): MonsterElement {
-        return monsterDao.getMonster(index)
-    }
-
-    fun getMonsterDetails(index: String): LiveData<Monster> {
+object TesterUtils {
+    //Only for testing.
+    fun createGetMonsterDetailsCall(index: String) {
         val retrofit = InjectorUtils.getRetrofitObject()
         val dndApi = InjectorUtils.createDnDApiInterface(retrofit)
         val call = dndApi.getMonsterDetails(index)
@@ -37,26 +27,21 @@ class MonsterRepository private constructor(private val monsterDao: MonsterDao) 
                 }
                 else {
                     val monsterDetails = response.body()
-                    if (monsterDetails != null && monsterDetails.armor_class.isNotEmpty()) {
+                    if (monsterDetails != null) {
                         val monsterToCreate = Monster(1, monsterDetails.index, monsterDetails.image, monsterDetails.name, monsterDetails.desc, monsterDetails.size, monsterDetails.type, monsterDetails.subtype,
                             monsterDetails.alignment, monsterDetails.armor_class[0].value, monsterDetails.armor_class[0].type, monsterDetails.hit_points, monsterDetails.hit_points_roll,
                             monsterDetails.speed.toString(), monsterDetails.strength, monsterDetails.dexterity, monsterDetails.constitution, monsterDetails.intelligence, monsterDetails.wisdom,
                             monsterDetails.charisma, monsterDetails.xp, monsterDetails.damage_vulnerabilities, monsterDetails.damage_resistances, monsterDetails.damage_immunities,
                             monsterDetails.languages, monsterDetails.actions.map { a -> a.name + ": " + a.desc })
-                        monsterDao.setMonsterDetails(monsterToCreate)
+                        Log.v("MONSTER DETAILS", " $monsterToCreate")
                     }
                 }
             }
         })
-
-        return monsterDao.getMonsterDetails()
     }
 
-    fun setMonsterDetails(monster: Monster) {
-        monsterDao.setMonsterDetails(monster)
-    }
-
-    fun getMonsters(): LiveData<List<MonsterElement>> {
+    //Only for testing.
+    fun createGetMonstersCall() {
         val retrofit = InjectorUtils.getRetrofitObject()
         val dndApi = InjectorUtils.createDnDApiInterface(retrofit)
         val call = dndApi.getMonsters()
@@ -72,35 +57,11 @@ class MonsterRepository private constructor(private val monsterDao: MonsterDao) 
                 }
                 else {
                     val monsters = response.body()
-                    monsterDao.deleteMonsters()
                     for (m: MonsterElement in monsters!!.results) {
-                        monsterDao.addMonster(m)
+                        Log.v("MONSTER", " index: " + m.index)
                     }
                 }
             }
         })
-
-        return monsterDao.getMonsters()
-    }
-
-    fun updateMonster(monsterToUpdate: MonsterElement) {
-        monsterDao.updateMonster(monsterToUpdate)
-    }
-
-    fun deleteMonster(index: String) {
-        monsterDao.deleteMonster(index)
-    }
-
-    fun deleteMonsters() {
-        monsterDao.deleteMonsters()
-    }
-
-    companion object {
-        @Volatile private var instance: MonsterRepository? = null
-
-        fun getInstance(monsterDao: MonsterDao) =
-            instance ?: synchronized(this) {
-                instance ?: MonsterRepository(monsterDao).also { instance = it }
-            }
     }
 }
