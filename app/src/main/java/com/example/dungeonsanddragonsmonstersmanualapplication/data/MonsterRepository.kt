@@ -56,7 +56,7 @@ class MonsterRepository private constructor(private val monsterDao: MonsterDao) 
         monsterDao.setMonsterDetails(monster)
     }
 
-    fun getMonsters(): LiveData<List<MonsterElement>> {
+    fun getMonsters(listToEdit: MutableList<String>): LiveData<List<MonsterElement>> {
         val retrofit = InjectorUtils.getRetrofitObject()
         val dndApi = InjectorUtils.createDnDApiInterface(retrofit)
         val call = dndApi.getMonsters()
@@ -73,8 +73,10 @@ class MonsterRepository private constructor(private val monsterDao: MonsterDao) 
                 else {
                     val monsters = response.body()
                     monsterDao.deleteMonsters()
+                    listToEdit.clear()
                     for (m: MonsterElement in monsters!!.results) {
                         monsterDao.addMonster(m)
+                        listToEdit.add(m.toString())
                     }
                 }
             }
