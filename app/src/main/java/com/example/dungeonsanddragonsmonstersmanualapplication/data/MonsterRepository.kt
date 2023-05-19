@@ -14,7 +14,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.lang.Exception
-import java.util.*
 
 
 class MonsterRepository private constructor(private val monsterDao: MonsterDao) {
@@ -22,7 +21,7 @@ class MonsterRepository private constructor(private val monsterDao: MonsterDao) 
     fun addMonster(listToEdit: MutableList<MonsterElement>, monster: MonsterElement) {
         //Mocked layer.
         monsterDao.addMonster(monster)
-        listToEdit.plus(monster)
+        listToEdit.add(monster)
     }
 
     fun getMonsterDetails(toEdit: (monster: Monster) -> Unit, index: String): LiveData<Monster> {
@@ -116,7 +115,7 @@ class MonsterRepository private constructor(private val monsterDao: MonsterDao) 
         //Mocked layer.
         monsterDao.updateMonster(monster)
         listToEdit.removeAll { m -> m.index == monster.index }
-        listToEdit.plus(monster)
+        listToEdit.add(monster)
     }
 
     fun deleteMonster(listToEdit: MutableList<MonsterElement>, monster: MonsterElement) {
