@@ -6,10 +6,10 @@ class Monster(
     val image: String?,
     //Character properties.
     val name: String,
-    val desc: String,
+    val desc: String?,
     val size: String,
     val type: String,
-    val subtype: String,
+    val subtype: String?,
     val alignment: String,
     //Base stats.
     val armorClass: Int,

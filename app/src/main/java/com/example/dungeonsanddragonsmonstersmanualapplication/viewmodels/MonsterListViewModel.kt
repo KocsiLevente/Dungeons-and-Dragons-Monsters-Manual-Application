@@ -7,7 +7,11 @@ import com.example.dungeonsanddragonsmonstersmanualapplication.models.MonsterEle
 
 class MonsterListViewModel(private val monsterRepository: MonsterRepository) : ViewModel() {
 
-    fun getMonsters(listToEdit: MutableList<String>): LiveData<List<MonsterElement>> {
+    fun getMonsters(listToEdit: MutableList<MonsterElement>): LiveData<List<MonsterElement>> {
         return monsterRepository.getMonsters(listToEdit)
+    }
+
+    fun deleteMonster(listToEdit: MutableList<MonsterElement>, toDelete: MonsterElement) {
+        return monsterRepository.deleteMonster(listToEdit, toDelete)
     }
 }
