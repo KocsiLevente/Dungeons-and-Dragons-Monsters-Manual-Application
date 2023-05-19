@@ -1,10 +1,6 @@
 package com.example.dungeonsanddragonsmonstersmanualapplication.utils
 
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.util.Log
-import androidx.lifecycle.LiveData
-import com.example.dungeonsanddragonsmonstersmanualapplication.models.Monster
 import com.example.dungeonsanddragonsmonstersmanualapplication.models.MonsterDetailsResult
 import com.example.dungeonsanddragonsmonstersmanualapplication.models.MonsterElement
 import com.example.dungeonsanddragonsmonstersmanualapplication.models.MonstersResult

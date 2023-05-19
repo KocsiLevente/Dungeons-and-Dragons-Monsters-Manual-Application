@@ -5,7 +5,7 @@ import com.example.dungeonsanddragonsmonstersmanualapplication.utils.TesterUtils
 import org.junit.Test
 import org.junit.Assert.*
 
-class MonsterRepositoryTest {
+class DnDApplicationTest {
 
     private var items: MutableList<MonsterElement> = mutableListOf()
 
