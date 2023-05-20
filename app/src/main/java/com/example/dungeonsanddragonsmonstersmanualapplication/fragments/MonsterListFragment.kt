@@ -11,9 +11,14 @@ import com.example.dungeonsanddragonsmonstersmanualapplication.adapter.MonsterLi
 import com.example.dungeonsanddragonsmonstersmanualapplication.models.MonsterElement
 import com.example.dungeonsanddragonsmonstersmanualapplication.utils.InjectorUtils
 import com.example.dungeonsanddragonsmonstersmanualapplication.viewmodels.MonsterListViewModel
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.monster_list_fragment.*
 
 class MonsterListFragment : Fragment() {
+
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     companion object {
         fun newInstance() =
@@ -40,11 +45,19 @@ class MonsterListFragment : Fragment() {
         //Setting up listeners.
         button_add.setOnClickListener {
             Toast.makeText(context!!, "Only available in final version!", Toast.LENGTH_SHORT).show()
+            throw RuntimeException("Test Crash") // Force a crash for Android Crashlytics.
         }
 
         adapter.notifyDataSetChanged()
         viewModel.getMonsters(items)
         listView.adapter = adapter
+
+        //FIREBASE
+        firebaseAnalytics = Firebase.analytics
+
+        val bundle = Bundle()
+        bundle.putString(FirebaseAnalytics.Param.SEARCH_TERM, "MonsterList")
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SEARCH, bundle)
     }
 
     private fun deleteMonster(listToEdit: MutableList<MonsterElement>, toDelete: MonsterElement) {
