@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "300455004287",
+    "project_id": "dndmonstersmanual",
+    "storage_bucket": "dndmonstersmanual.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:300455004287:android:db0299dd65fd38d3b1974a",
+        "android_client_info": {
+          "package_name": "com.example.dungeonsanddragonsmonstersmanualapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "300455004287-hd42kl72aopqgstaskhhs7cll60nhpad.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAALoACiiE-6lRwCB5FNGfVy8cKGS1be-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "300455004287-hd42kl72aopqgstaskhhs7cll60nhpad.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
