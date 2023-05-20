@@ -16,6 +16,4 @@ class MonsterListActivity : AppCompatActivity() {
                 .commitNow()
         }
     }
-
-    //TODO implement handling UI and other functionality
 }
