@@ -1,29 +1,21 @@
 package com.example.dungeonsanddragonsmonstersmanualapplication.viewmodels
 
-import androidx.lifecycle.LiveData
+import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
 import com.example.dungeonsanddragonsmonstersmanualapplication.data.MonsterRepository
 import com.example.dungeonsanddragonsmonstersmanualapplication.models.Monster
-import com.example.dungeonsanddragonsmonstersmanualapplication.models.MonsterElement
 
 class MonsterDetailsViewModel(private val monsterRepository: MonsterRepository) : ViewModel() {
 
-    var index: String = ""
+    var index: String? = ""
         get() = field
         set(value) {
             field = value
         }
 
-    val monster: LiveData<Monster>?
-        get() {
-            return if (index.isNotEmpty()) {
-                monsterRepository.getMonsterDetails(index)
-            } else {
-                null
-            }
-        }
+    fun getMonsterDetails(toEdit: (monster: Monster) -> Unit, index: String) = monsterRepository.getMonsterDetails(toEdit, index)
 
-    fun addMonster(monster: MonsterElement) = monsterRepository.addMonster(monster)
-
-    fun getMonster(index: String) = monsterRepository.getMonster(index)
+    fun getMonsterImage(toEdit: (image: Bitmap) -> Unit, index: String) {
+        monsterRepository.getMonsterImage(toEdit, index)
+    }
 }
